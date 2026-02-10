@@ -139,19 +139,12 @@
 
       <!-- ===================== GIFT CARD (after accept) ===================== -->
       <section class="card hidden" id="giftCard" style="margin-top:14px;">
-        <h2 class="big">Surpriză pentru tine 🎁</h2>
-        <p class="sub center">Apasă pe cutie ca să o deschizi.</p>
+        <h2 class="big">Surpriză pentru tine 
+            <span id="openInvite" style="cursor:pointer;">🎁</span>
+        </h2>
 
-        <div class="giftPhotoWrap">
-          <button type="button" id="giftBtn" class="giftPhotoBtn" aria-label="Open gift">
-            <img
-              id="giftImg"
-              class="giftImg"
-              src="assets/gift-closed.jpg"
-              alt="Gift closed"
-            />
-          </button>
-        </div>
+        
+        <p class="sub center">Apasă pe cutie ca să o deschizi.</p>
 
         <p class="sub center hidden" id="giftMsg" style="margin-top:12px;">
           🎉 Surpriza vine pe <b>14 februarie</b> 💘
@@ -172,6 +165,31 @@
 
   <!-- ===================== FX LAYER (hearts animation) ===================== -->
   <div id="fxLayer" class="fx-layer" aria-hidden="true"></div>
+
+  <!-- ===================== Invitatie Speciala ===================== -->
+
+<div id="inviteOverlay" class="invite-overlay">
+  <div class="invite-panel">
+    <button type="button" id="closeInvite" class="closeInvite">✕</button>
+
+    <h2>Invitație pentru tine 💌</h2>
+
+<div id="inviteText" class="invite-text">
+  <div class="line">Poate pare doar un site…</div>
+  <div class="line">dar fiecare întrebare, fiecare click, a fost despre tine.</div>
+  <div class="line">Pentru că tu ești motivul.</div>
+  <div class="line">Și vreau să te invit la o seară în care timpul stă pe loc</div>
+  <div class="line">și rămânem doar noi doi.</div>
+  <div class="line">📅 14 februarie</div>
+  <div class="line">📍 Loc secret</div>
+  <div class="line">Iar restul… îl vom scrie împreună.</div>
+</div>
+
+
+  </div>
+
+</div>
+
 
   <!-- ===================== SCRIPT ===================== -->
   <script src="script.js"></script>

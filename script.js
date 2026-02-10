@@ -86,6 +86,9 @@ const giftBtn = document.getElementById("giftBtn");
 const giftBox = document.getElementById("giftBox"); // exists but not used in photo version
 const giftMsg = document.getElementById("giftMsg");
 
+
+const inviteText = document.getElementById("inviteText");
+
 /* ===================== HEART FX FUNCTION ===================== */
 function popHearts(count = 10) {
   if (!fxLayer) return;
@@ -290,26 +293,58 @@ if (valentineForm) {
   });
 }
 
-/* ===================== GIFT OPEN (photo swap) ===================== */
-const giftImg = document.getElementById("giftImg");
-let giftOpened = false;
-
-if (giftBtn) {
-  giftBtn.addEventListener("click", () => {
-    giftOpened = !giftOpened;
-
-    if (giftImg) {
-      giftImg.src = giftOpened ? "assets/gift-open.jpg" : "assets/gift-closed.jpg";
-      giftImg.classList.remove("opened");
-      void giftImg.offsetWidth; // restart animation
-      giftImg.classList.add("opened");
-    }
-
-    if (giftMsg) giftMsg.classList.remove("hidden");
-    popHearts(18);
-  });
-}
-
 /* ===================== EVENT LISTENERS ===================== */
 if (nextBtn) nextBtn.addEventListener("click", goNext);
 if (backBtn) backBtn.addEventListener("click", goBack);
+
+
+/* ===================== Invitatie Speciala ===================== */
+
+const openInvite = document.getElementById("openInvite");
+const inviteOverlay = document.getElementById("inviteOverlay");
+const closeInvite = document.getElementById("closeInvite");
+
+function showInvite() {
+  if (!inviteOverlay) return;
+  inviteOverlay.style.display = "flex";
+  animateInviteText();
+}
+
+function animateInviteText() {
+  if (!inviteText) return;
+
+  const lines = inviteText.querySelectorAll(".line");
+  lines.forEach((l) => l.classList.remove("show")); // reset
+
+  lines.forEach((line, i) => {
+    setTimeout(() => {
+      line.classList.add("show");
+    }, i * 5000);
+  });
+}
+
+
+function hideInvite() {
+  if (!inviteOverlay) return;
+  inviteOverlay.style.display = "none";
+
+  if (inviteText) {
+    inviteText.querySelectorAll(".line").forEach((l) => l.classList.remove("show"));
+  }
+}
+
+
+if (openInvite) openInvite.addEventListener("click", showInvite);
+if (closeInvite) closeInvite.addEventListener("click", hideInvite);
+
+// click pe fundal
+if (inviteOverlay) {
+  inviteOverlay.addEventListener("click", (e) => {
+    if (e.target === inviteOverlay) hideInvite();
+  });
+}
+
+// ESC pe PC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") hideInvite();
+});
